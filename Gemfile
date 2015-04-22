@@ -18,6 +18,8 @@ gem 'coffee-rails', '~> 4.1.0'
 gem 'jquery-rails'
 
  gem 'devise'
+ gem 'figaro', '1.0'
+gem 'bootstrap-sass'
 
 
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks

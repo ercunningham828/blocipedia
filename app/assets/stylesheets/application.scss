@@ -1,5 +1,9 @@
-@import "css/bootstrap";
+ // "bootstrap-sprockets" must be imported before "bootstrap" and "bootstrap/variables"
+
+@import "bootstrap-sprockets";
+@import "bootstrap";
 @import "css/clean-blog";
+
 /*
  * This is a manifest file that'll be compiled into application.css, which will include all the files
  * listed below.
@@ -15,3 +19,9 @@
  *= require_tree .
  *= require_self
  */
+
+ 
+ 
+ .nav {
+   margin-top: 5px;
+ }
