@@ -48,12 +48,12 @@
                         <%= link_to "About", about_path%>
                     </li>
                     <li>
-                        <a href="post.html">Wikis</a>
+                        <%= link_to "Wikis", wikis_path%>
                     </li>
                     <li>
                     </li>
                 </ul>
-           </div>
+         
             <!-- Collect the nav links, forms, and other content for toggling -->
           
         <div class="pull-right user-info">
@@ -61,19 +61,19 @@
                   
                        Hello <%=(current_user.name || current_user.email)%>!
                    
-                   <button type="button" class="btn btn-info">  <%= link_to destroy_user_session_path, method: :delete, class: 'glyphicon glyphicon-log-out' do %>
-                    </button> <% end %>
-
+                   <button type="button" class="btn-sm btn-info">   <%= link_to "",destroy_user_session_path, method: :delete, class: 'glyphicon glyphicon-log-out'%>
+                    </button> 
            
                   <% else %>
                         <%= link_to "Sign In", new_user_session_path %> or
                        <%= link_to "Sign Up", new_user_registration_path %>
                   <%end%>
                 </div>
-            
+              </div>
             <!-- /.navbar-collapse -->
         </div>
         <!-- /.container -->
+        
     </nav>
   </div>
 </head>

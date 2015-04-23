@@ -1,0 +1,16 @@
+<div class="container">
+        <div class="row">
+            <h1> All Wikis</h1>
+            <div class="col-lg-8 ">
+               <%= render partial: 'wikis/wiki', collection: @wikis %>
+         
+                 <!-- Pager -->
+                 <h4> All Wikis
+            <a class="glyphicon glyphicon-arrow-right" <%= link_to "", wikis_path%></a></h4>
+               
+            </div>
+               <div class="col-md-4">
+       <%= link_to "New Wiki", new_wiki_path(@wiki), class: 'btn btn-success' %>
+        </div>
+    </div>
+    <hr>
