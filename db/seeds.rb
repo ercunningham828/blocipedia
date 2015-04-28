@@ -23,9 +23,16 @@ require 'faker'
    email:    'premium@example.com',
    password: 'helloworld',
    role: 'premium',
+   customer_id:  "cus_68zL9a8CwjEZE1",
  )
  premium.skip_confirmation!
- premium.save!
+ charge = Stripe::Charge.create(
+     customer: "cus_68zL9a8CwjEZE1",
+     amount: Amount.new.default,
+     description: "Premium Blocipedia Membership - #{premium.email}",
+     currency: 'usd',
+   )
+  premium.save!
 
  users=User.all
 

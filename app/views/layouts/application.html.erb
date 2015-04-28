@@ -83,9 +83,32 @@
     </nav>
   </div>
 </head>
-<body>
 
+<body>
+  
+    <% if flash[:notice] %>
+         <div class="alert alert-success row">
+           <button type="button" class="close" data-dismiss="alert">&times;</button>
+           <%= flash[:notice] %>
+         </div>
+       <% elsif flash[:error] %>
+         <div class="alert alert-danger row">
+           <button type="button" class="close" data-dismiss="alert">&times;</button>
+           <%= flash[:error] %>
+         </div>
+      <% elsif flash[:success] %>
+         <div class="alert alert-success row">
+           <button type="button" class="close" data-dismiss="alert">&times;</button>
+           <%= flash[:success] %>
+         </div>
+       <% elsif flash[:alert] %>
+         <div class="alert alert-warning row">
+           <button type="button" class="close" data-dismiss="alert">&times;</button>
+           <%= flash[:alert] %>
+         </div>
+       <% end %>
 <%= yield %>
 
 </body>
+
 </html>

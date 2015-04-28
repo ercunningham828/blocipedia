@@ -30,7 +30,6 @@ class ChargesController < ApplicationController
      amount: Amount.new.default,
      description: "Premium Blocipedia Membership - #{current_user.email}",
      currency: 'usd',
-     source: card,
    )
    flash[:success] = "Thanks for all the money, #{current_user.email}! Feel free to pay me again."
    current_user.update_attributes(role: "premium")
