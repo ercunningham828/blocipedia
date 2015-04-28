@@ -4,6 +4,8 @@
   <title>Blocipedia</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag "https://js.stripe.com/v1/", "application" %>
+  <%= tag :meta, :name => "stripe-key", :content => ENV['STRIPE_PUBLISHABLE_KEY'] %>
   <%= csrf_meta_tags %>
 
   <!DOCTYPE html>
@@ -60,7 +62,11 @@
                   <% if current_user %>
                   
                        Hello <%=(current_user.name || current_user.email)%>!
-                   
+                        <button type="button" class="btn-sm btn-info"> 
+                       <%= link_to edit_user_registration_path, class: 'btn-info btn-sm' do %>
+              <span class="glyphicon glyphicon-user"></span>
+            <% end %></button>
+                    
                    <button type="button" class="btn-sm btn-info">   <%= link_to "",destroy_user_session_path, method: :delete, class: 'glyphicon glyphicon-log-out'%>
                     </button> 
            

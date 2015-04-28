@@ -18,6 +18,15 @@ require 'faker'
  emily.skip_confirmation!
  emily.save!
 
+ premium= User.new(
+   name:     'Premium User',
+   email:    'premium@example.com',
+   password: 'helloworld',
+   role: 'premium',
+ )
+ premium.skip_confirmation!
+ premium.save!
+
  users=User.all
 
  30.times do

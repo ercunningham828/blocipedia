@@ -45,25 +45,40 @@
         <%= f.submit "Update", class: 'btn btn-success' %>
       </div>
     <% end %>
-    <h3>Account Status</h3>
-      <body>You currently have a <%=current_user.role%> account. 
-        <%if current_user.role=="standard"%>
-        Upgrade to a premium user for $15.  Premium accounts will allow you to maintain private wikis. </body>
-    </br>
-    <%= render partial: 'charges/new'%>
-      <%else%>
-      <body>Unhappy with your premium account?  Use the button below to downgrade back to a standard user.  Your $15 charge will be fully refunded and any private wikis created will be made public.
-        <div class="form-group">
-        <div class="form-group">
-        <p><%= button_to "Downgrade my account", downgrade_user_path(current_user), method: :get, class: 'btn btn-danger' %></p>
-    
-    </div>
-      <%end%>
+    <h3>Upgrade my account</h3>
+      <body>Upgrade to a premium user for $15.  Premium accounts will allow you to maintain private wikis.</body>
+      <%= render 'subscriptions/create' %>
+    <%= form_for @subscription do |f| %>
+          <%= f.hidden_field :stripe_card_token %>
 
+          <div class="field">
+            <%= f.label :email %>
+            <%= f.text_field :email %>
+          </div>
+          <% if @subscription.stripe_card_token.present? %>
+            Credit card has been provided.
+          <% else %>
+            <div class="field">
+              <%= label_tag :card_number, "Credit Card Number" %>
+              <%= text_field_tag :card_number, nil, name: nil %>
+            </div>
+            <div class="field">
+              <%= label_tag :card_code, "Security Code on Card (CVV)" %>
+              <%= text_field_tag :card_code, nil, name: nil %>
+            </div>
+            <div class="field">
+              <%= label_tag :card_month, "Card Expiration" %>
+              <%= select_month nil, {add_month_numbers: true}, {name: nil, id: "card_month"} %>
+              <%= select_year nil, {start_year: Date.today.year, end_year: Date.today.year+15}, {name: nil, id: "card_year"} %>
+            </div>
+          <% end %>
+          <div id="stripe_error">
+            <noscript>JavaScript is not enabled and is required for this form. First enable it in your web browser settings.</noscript>
+          </div>
     <h3>Cancel my account</h3>
     <div class="form-group">
         <p><%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: 'btn btn-danger' %></p>
-    
+        <%end%>
     </div>
   </div>
 </div>
