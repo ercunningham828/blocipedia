@@ -7,11 +7,11 @@ class ApplicationPolicy
   end
 
   def index?
-    true
+    record.publicly_viewable? || (record.user == user || user.admin?)
   end
 
   def show?
-    record.public? || user.present?
+    record.publicly_viewable? || (record.user == user || user.admin?)
   end
 
   def create?
