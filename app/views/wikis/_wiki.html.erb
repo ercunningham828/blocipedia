@@ -2,10 +2,10 @@
                 <div class="post-preview">
                     <a href="post.html">
                         <h2 class="post-title">
-                             <%= link_to wiki.title, wiki %>
+                             <%= link_to (markdown_to_html wiki.title), wiki %>
                         </h2>
                         <h3 class="post-subtitle">
-                            <%=wiki.body%>
+                            <%=markdown_to_html wiki.body%>
                         </h3>
                     </a>
                     <p class="post-meta"> Submitted <%= time_ago_in_words(wiki.created_at) %> ago by <a><%= wiki.user.name %><a/> </p>
