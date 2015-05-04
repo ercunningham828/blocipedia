@@ -16,7 +16,11 @@
 
                 <!-- Author -->
                 <p class="lead">
-                    Collaborators: <body><%=@wiki.users.map {|user| user.name}.join(', ')%></body>
+                    Collaborators: 
+                    <%@collaborations.each do |collaboration|%>
+                    <span class="badge"><%=collaboration.user_name%> </span>
+                          
+                    <%end%>
                 </p>
                 
                 <hr>
@@ -36,19 +40,28 @@
                     <div class="col-md-4">
                 
                       <% if @wiki.users.include?(current_user) %>
-                      
+
                       <h4>Add Collaborators</h4>
                       <%= form_for @collaboration do |f|%>
                           <div>
                               <%= f.label :user %>
                               <%= f.collection_select(:user_id, @users, :id, :name)%>
-                              <div>
+                              </div>
                               <%= f.hidden_field( :wiki_id, :value=>@wiki.id)%>
-                            </div>
-                            </div>
+                         
                           <%= f.submit "Add Collaborator", class:"btn-sm btn-info" %>
                       <% end %>
+                 
+                    </br>
+                       <h4>Remove Collaborators</h4>
+                      <%=form_tag collaboration_path, method: :delete do%>
+                          <div>
+                              <%= collection_select(:collaboration,:user_id, @collaborations, :user_id, :user_name)%>
+                              </div>
+                          <%= submit_tag "Remove Collaborator", class:"btn-sm btn-info" %>
+                    
                    <% end %>
+                     <% end %>
                     </br>
                   
                         <% if policy(@wiki).update? %>
@@ -59,7 +72,6 @@
                            <%end%>
                       </div>
                 </div>
-
             </div>
 
  

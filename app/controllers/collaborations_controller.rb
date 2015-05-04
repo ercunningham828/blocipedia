@@ -15,6 +15,19 @@ class CollaborationsController < ApplicationController
      end
   end
 
+  def destroy
+    @collaboration=Collaboration.where(user_id:params[:collaboration][:user_id]).where(wiki:params[:id]).first
+    @wiki=@collaboration.wiki
+    
+     if @collaboration.destroy
+       flash[:notice] = "User was removed"
+       redirect_to @wiki
+     else
+       flash[:error] = "There was an error removing the user."
+       redirect_to @wiki
+     end
+  end
+
   private
 
   def collab_params
