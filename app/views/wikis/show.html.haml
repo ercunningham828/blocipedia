@@ -42,7 +42,7 @@
         %h4 Remove Collaborators
         = form_tag collaboration_path, method: :delete do
           %div
-            = collection_select(:collaboration,:user_id, @collaborations, :user_id, :user_name)
+            = collection_select(:collaboration,:user_id, @others, :user_id, :user_name)
           = submit_tag "Remove Collaborator", class:"btn-sm btn-info"
         %br
       - if policy(@wiki).update?
