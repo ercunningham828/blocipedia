@@ -1,0 +1,51 @@
+/ Page Content
+.container
+.row
+  %br
+    %a.pull-left
+    
+      %i.glyphicon.glyphicon-arrow-left
+      = link_to " Back to All Wikis",wikis_path
+      %br
+  
+    / Blog Post Content Column
+    .col-md-8
+      / Blog Post
+      / Title
+      %h1= markdown_to_html @wiki.title
+      / Author
+      %p.lead
+        Collaborators:
+        - @collaborations.each do |collaboration|
+          %span.badge= collaboration.user_name
+      %hr/
+      / Date/Time
+      %p
+        %span.glyphicon.glyphicon-time
+        Created #{@wiki.created_at.strftime("%m/%d/%Y %I:%M %p")}
+      %hr/
+      / Post Content
+      %p.lead= markdown_to_html @wiki.body
+      %hr/
+      / End Nested Comment
+    .col-md-4
+      - if @wiki.users.include?(current_user)
+        %br
+        %h4 Add Collaborators
+        = form_for @collaboration do |f|
+          %div
+            = f.label :user
+            = f.collection_select(:user_id, @users, :id, :name)
+          = f.hidden_field( :wiki_id, :value=>@wiki.id)
+          = f.submit "Add Collaborator", class:"btn-sm btn-info"
+        %br
+        %h4 Remove Collaborators
+        = form_tag collaboration_path, method: :delete do
+          %div
+            = collection_select(:collaboration,:user_id, @collaborations, :user_id, :user_name)
+          = submit_tag "Remove Collaborator", class:"btn-sm btn-info"
+        %br
+      - if policy(@wiki).update?
+        = link_to "Edit", edit_wiki_path(@wiki), class: 'btn btn-success'
+      - if policy(@wiki).destroy?
+        = link_to "Delete Wiki", @wiki, method: :delete, class: 'btn btn-danger', data: { confirm: 'Are you sure you want to delete this post?' }
