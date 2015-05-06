@@ -1,0 +1,11 @@
+  <%= form_tag charges_path do %>
+   <h4>Upgrade Today!</h4>
+   <script
+    class='stripe-button'
+    src="https://checkout.stripe.com/checkout.js" 
+    data-key="<%= @stripe_btn_data[:key] %>"
+    data-amount=<%= @stripe_btn_data[:amount] %>
+    data-email=<%= @stripe_btn_data[:email] %>
+    data-description="<%= @stripe_btn_data[:description] %>" >
+   </script>
+ <% end %>

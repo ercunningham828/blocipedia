@@ -18,6 +18,22 @@ require 'faker'
  emily.skip_confirmation!
  emily.save!
 
+ premium= User.new(
+   name:     'Premium User',
+   email:    'premium@example.com',
+   password: 'helloworld',
+   role: 'premium',
+   customer_id:  "cus_68zL9a8CwjEZE1",
+ )
+ premium.skip_confirmation!
+ charge = Stripe::Charge.create(
+     customer: "cus_68zL9a8CwjEZE1",
+     amount: Amount.new.default,
+     description: "Premium Blocipedia Membership - #{premium.email}",
+     currency: 'usd',
+   )
+  premium.save!
+
  users=User.all
 
  30.times do

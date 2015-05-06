@@ -22,6 +22,7 @@ gem 'jquery-rails'
 gem 'bootstrap-sass'
  gem 'faker'
 gem "pundit"
+gem 'stripe'
 
 
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks

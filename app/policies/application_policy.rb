@@ -7,11 +7,11 @@ class ApplicationPolicy
   end
 
   def index?
-    true
+    record.publicly_viewable? || (record.user == user || user.admin?)
   end
 
   def show?
-    scope.where(:id => record.id).exists?
+    record.publicly_viewable? || (record.user == user || user.admin?)
   end
 
   def create?

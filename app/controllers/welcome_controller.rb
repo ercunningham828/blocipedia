@@ -1,6 +1,6 @@
 class WelcomeController < ApplicationController
   def index
-    @tenwikis=Wiki.first(10)
+    @tenwikis=Wiki.where(:private=>false).first(10)
   end
   def about
   end

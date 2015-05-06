@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+  has_many :wikis
   after_initialize :set_role
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
