@@ -34,6 +34,22 @@
   color: white;
  }
 
+ .user-info .btn-sm input a {
+  margin: 5px;
+  height: 60px;
+  line-height: 30px;
+  z-index: 3;
+  font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  text-transform: uppercase;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  color: #5bc0de;
+  padding-right: 20px;
+  padding-top: 20px;
+ }
+
+
 body {
   font-family: 'Lora', 'Times New Roman', serif;
   font-size: 20px;

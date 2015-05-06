@@ -37,14 +37,17 @@ require 'faker'
  users=User.all
 
  30.times do
-   Wiki.create!(
-     user: users.sample,
+  wiki=Wiki.create!(
      title: (Faker::Lorem.words(3).map {|word| word.capitalize}).join(' '),
      body:  Faker::Lorem.paragraph,
      private: false
    )
+  wiki.collaborations.create(user:users.sample)
  end
  wikis = Wiki.all
+
+
+
 
  puts "Admin and Emily created"
  puts "#{Wiki.count} wikis created"

@@ -1,11 +1,14 @@
 class WikisController < ApplicationController
   def index
-    @wikis=Wiki.visible_to(current_user).paginate(page: params[:page], per_page: 10)
+    @wikis=policy_scope(Wiki).paginate(page: params[:page], per_page: 10)
     @wiki=Wiki.new
   end
 
   def show
     @wiki=Wiki.find(params[:id])
+    @collaboration=Collaboration.new
+    @collaborations=@wiki.collaborations
+    @users=User.all
   end
 
   def new
@@ -15,7 +18,7 @@ class WikisController < ApplicationController
 
   def create
     @wiki=Wiki.new(wiki_params)
-    @wiki.user=current_user
+    @collaboration=@wiki.collaborations.build(wiki:@wiki,user:current_user)
     authorize @wiki
     if @wiki.save
        flash[:notice] = "Wiki was saved."

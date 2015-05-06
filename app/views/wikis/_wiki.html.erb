@@ -8,7 +8,7 @@
                             <%=markdown_to_html wiki.body%>
                         </h3>
                     </a>
-                    <p class="post-meta"> Submitted <%= time_ago_in_words(wiki.created_at) %> ago by <a><%= wiki.user.name %><a/> </p>
+                    <p class="post-meta"> Submitted <%= time_ago_in_words(wiki.created_at) %> ago || Collaborators: <body><%= wiki.users.map {|user| user.name}.join(', ') %><body/> </p>
                             
                 </div>
                 <hr>
