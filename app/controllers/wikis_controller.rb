@@ -5,10 +5,11 @@ class WikisController < ApplicationController
   end
 
   def show
-    @wiki=Wiki.find(params[:id])
+    @wiki=Wiki.where(slug:params[:id]).first
     @collaboration=Collaboration.new
     @collaborations=@wiki.collaborations
-    @users=User.all
+    @others=@wiki.collaborations.reject {|a| a.user==current_user}
+    @users=User.all.reject {|a| a.wikis.include?(@wiki)}
   end
 
   def new
@@ -30,12 +31,12 @@ class WikisController < ApplicationController
   end
 
   def edit
-    @wiki=Wiki.find(params[:id])
+    @wiki=Wiki.where(slug:params[:id]).first
     authorize @wiki
   end
 
   def update
-    @wiki=Wiki.find(params[:id])
+    @wiki=Wiki.where(slug:params[:id]).first
     authorize @wiki
      if @wiki.update_attributes(wiki_params)
        flash[:notice] = "Wiki was updated."
@@ -47,7 +48,7 @@ class WikisController < ApplicationController
   end
 
  def destroy
-     @wiki = Wiki.find(params[:id])
+     @wiki=Wiki.where(slug:params[:id]).first
      authorize @wiki
 
      if @wiki.destroy

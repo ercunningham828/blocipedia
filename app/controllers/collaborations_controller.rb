@@ -16,8 +16,9 @@ class CollaborationsController < ApplicationController
   end
 
   def destroy
-    @collaboration=Collaboration.where(user_id:params[:collaboration][:user_id]).where(wiki:params[:id]).first
-    @wiki=@collaboration.wiki
+    @wiki=Wiki.where(slug:params[:id]).first
+    @collaboration=Collaboration.where(user_id:params[:collaboration][:user_id]).where(wiki_id:@wiki.id).first
+   
     
      if @collaboration.destroy
        flash[:notice] = "User was removed"

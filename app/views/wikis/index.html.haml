@@ -1,0 +1,11 @@
+.container
+  .row
+    %h1 All Wikis
+    .col-lg-8
+      = render partial: 'wikis/wiki', collection: @wikis
+      = will_paginate @wikis
+      / Pager
+    .col-md-4
+      - if policy(@wiki).create?
+        = link_to "New Wiki", new_wiki_path(@wiki), class: 'btn btn-success'
+  %hr/
