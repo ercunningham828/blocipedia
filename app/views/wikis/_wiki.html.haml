@@ -7,5 +7,5 @@
         = markdown_to_html wiki.body
     %p.post-meta
       Submitted #{time_ago_in_words(wiki.created_at)} ago || Collaborators:
-    = wiki.users.map {|user| user.name}.join(', ')
+      = wiki.users.map {|user| user.name}.join(', ')
   %hr/
