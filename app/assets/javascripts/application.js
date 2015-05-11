@@ -17,4 +17,5 @@
 //= require js/bootstrap.min.js
 //= require js/jquery
 //= require js/jquery.min.js
+//= require epiceditor.js
 //= require_tree .

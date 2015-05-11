@@ -27,6 +27,7 @@ gem 'redcarpet'
 gem 'will_paginate', '~> 3.0.5'
 gem 'haml'
 gem 'friendly_id', '~> 5.1.0'
+gem 'epic-editor-rails'
 
 
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks

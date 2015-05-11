@@ -21,5 +21,3 @@ Rails.application.routes.draw do
   get 'about' =>'welcome#about'
 
 end
-
-

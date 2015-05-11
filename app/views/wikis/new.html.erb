@@ -1,0 +1,10 @@
+
+<div class="row">
+  <h1> New Wiki</h1>
+    <div class="col-md-8">
+      <%=render partial: 'form', locals: { wiki: @wiki}%>
+      <script type="text/javascript">
+  var editor = new EpicEditor().load();
+</script>
+    </div>
+</div>
